@@ -35,33 +35,28 @@ cd $work_d
 
 ###############################################################################
 
-f=combined.fastq.gz
-if [[ ! -e $f ]]; then
+b=sort.bam
+if [[ ! -e $b ]]; then
 
-  zcat $data_d/*fastq.gz > combined.fastq
-  bgzip combined.fastq
-
-fi
-
-g=test.sort.bam
-if [[ ! -e $g ]]; then
-
-  $ngmlr -t 10 -r $ref -q combined_2kbp.fastq.gz -o test.sam
+  $ngmlr -t 10 -r $ref -q $data_d/*fastq.gz -o test.sam
 
   samtools view -S -b test.sam > test.bam
-  samtools sort test.bam -o $g
-  samtools index $g
+  samtools sort test.bam -o $b
+  samtools index $b
 
   rm test.sam
   rm test.bam
 
 fi
 
-h=sv.vcf
-if [[ ! -e $h ]]; then
+f=alignment.flagstat
+if [[ ! -e $f ]]; then
+  samtools flagstat $b > $f 
+fi
 
-samtools 
-
+g=alignment.genomecov
+if [[ ! -e $f ]]; then
+  bedtools genomecov -d $b > $g
 fi
 
 ###############################################################################

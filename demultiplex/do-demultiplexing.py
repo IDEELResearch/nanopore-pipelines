@@ -23,7 +23,7 @@ workdir: '/proj/ideel/Seq_Reads/IDEEL_rawreads/Tpallidum/reupload/'
 
 ## PIPELINE RULES
 
-# obligatory rule all
+# obligatory rule all (what files will this pipeline produce?)
 rule all:
 	input:
 		directory("demultiplexed-all/")
@@ -41,5 +41,5 @@ rule demultiplexed:
 		"combined.fastq"
 	output:
 		directory("demultiplexed-all/")
-	shell:
+	shell: 
 		"qcat -f {input} -b {output}"

@@ -24,7 +24,7 @@ minimap2 = '/nas/longleaf/home/kamoser/bin/minimap2-2.17_x64-linux/minimap2'
 workdir: '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/minimap'
 WRKDIR = '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/minimap' #setting string var
 
-readWD = '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/symlinks' # where are your reads kept?
+readWD = '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/symlinks/' # where are your reads kept?
 
 SAMPLES, = glob_wildcards(readWD + '{samp}.fastq') #getting samples
 
@@ -52,8 +52,9 @@ rule sort:
 	input:
 		'{samp}.bam'
 	output:
-		'{samp}.sorted.bam.bai'
+		sorted = '{samp}.sorted.bam',
+		index = '{samp}.sorted.bam.bai'
 	run:
-		shell('samtools sort {input} -o {samp}.sorted.bam')
-		shell('samtools index {samp}.sorted.bam')
+		shell('samtools sort {input} -o {output.sorted}')
+		shell('samtools index {output.sorted}')
 

@@ -1,6 +1,6 @@
 ###############################################################################
-## Purpose:  SnakeMake File to prepare bam files from a minion nanopore run
-#	     using minimap
+## Purpose:  SnakeMake File to prepare bam files from a demultiplexed minion 
+#	     nanopore run using minimap and samtools
 
 ## Input: fastq files
 ## Output: bam files
@@ -11,20 +11,21 @@ shell.prefix("set -o pipefail; ")
 
 ################################################################################
 
-## CHANGE AS NEEDED
+## CHANGE AS NEEDED (<TEXT>)
 
 ## Reference genome
-REF = '/proj/ideel/resources/genomes/Tpallidum/Nichols_NC_021490.2.fasta' 
+REF = '/proj/ideel/resources/genomes/<ORGANISM>/<NAME>.fasta' 
 
 ## Required software
 # samtools should be in your path (`module load samtools` or other)
-minimap2 = '/nas/longleaf/home/kamoser/bin/minimap2-2.17_x64-linux/minimap2'
+# To run minimap locally with precompiled binaries, see: https://github.com/lh3/minimap2#install
+minimap2 = '/<FULL-PATH>/minimap2'
 
 ## Project specfic paths
-workdir: '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/minimap' # where do you want your bam files to go? (*hint* probably scratch)
-WRKDIR = '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/minimap' #setting string var
+workdir: '<FULL-PATH>' # where do you want your bam files to go? (*hint* probably scratch)
+WRKDIR = '<FULL-PATH>' #setting string var
 
-readWD = '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/symlinks/' # where are your reads kept?
+readWD = '<FULL-PATH>' # where are your reads kept? should have unqiue names and end with "fastq"
 
 SAMPLES, = glob_wildcards(readWD + '{samp}.fastq') #getting list of samples
 

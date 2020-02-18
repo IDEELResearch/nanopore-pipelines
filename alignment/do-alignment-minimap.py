@@ -7,20 +7,24 @@
 
 ################################################################################
 
+shell.prefix("set -o pipefail; ")
+
+################################################################################
+
 ## CHANGE AS NEEDED
 
 ## Reference genome
-REF = /proj/ideel/resources/genomes/Tpallidum/ 
+REF = '/proj/ideel/resources/genomes/Tpallidum/Nichols_NC_021490.2.fasta' 
 
 ## Required software
 # samtools should be in your path (`module load samtools` or other)
-minimap = '/nas/longleaf/home/kamoser/bin/minimap2-2.17_x64-linux/minimap2'
+minimap2 = '/nas/longleaf/home/kamoser/bin/minimap2-2.17_x64-linux/minimap2'
 
 ## Project specfic paths
-workdir: '/pine/k/a/kamoser/nanopore-tpallidium/test-alignments/minimap' #sets working dir; most likely scratch
-WRKDIR = '/pine/k/a/kamoser/nanopore-tpallidium/test-alignments/minimap' #setting string var
+workdir: '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/minimap'
+WRKDIR = '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/minimap' #setting string var
 
-readWD = '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments' # where are your reads kept?
+readWD = '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/symlinks' # where are your reads kept?
 
 SAMPLES, = glob_wildcards(readWD + '{samp}.fastq') #getting samples
 
@@ -28,28 +32,28 @@ SAMPLES, = glob_wildcards(readWD + '{samp}.fastq') #getting samples
 
 ## PIPELINE RULES
 
-# obligatory rule all (what files will this pipeline produce?)
+# Obligatory rule all (what files will this pipeline produce?)
 rule all:
 	input: expand('{samp}.sorted.bam.bai', samp = SAMPLES)
 
 # Align reads to reference
 rule align:
 	input: 
-		"{samp}.fastq"
+		readWD + '{samp}.fastq'
 	output:
-		"{samp}.sorted.bam.bai"
+		'{samp}.bam'
 	shell:
-		"minimap2 -t 4 -ax map-ont {REF} {samp}.fastq \
+		'minimap2 -t 4 -ax map-ont {REF} {input} \
 			| samtools view -Shb - \
-			> {samp}.minimap.bam"
+			> {output}'
 
 # Sort and index bam file
 rule sort:
 	input:
-		"{samp}.bam"
+		'{samp}.bam'
 	output:
-		"{samp}.sorted.bam.bai"
+		'{samp}.sorted.bam.bai'
 	run:
-		shell("samtools sort {input} -o {samp}.sorted.bam")
-		shell("samtools index {samp}.sorted.bam")
+		shell('samtools sort {input} -o {samp}.sorted.bam')
+		shell('samtools index {samp}.sorted.bam')
 

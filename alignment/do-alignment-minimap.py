@@ -25,7 +25,7 @@ minimap2 = '/<FULL-PATH>/minimap2'
 workdir: '<FULL-PATH>' # where do you want your bam files to go? (*hint* probably scratch)
 WRKDIR = '<FULL-PATH>' #setting string var
 
-readWD = '<FULL-PATH>' # where are your reads kept? should have unqiue names and end with "fastq"
+readWD = '<FULL-PATH>/' # where are your reads kept? should have unqiue names and end with "fastq"
 
 SAMPLES, = glob_wildcards(readWD + '{samp}.fastq') #getting list of samples
 

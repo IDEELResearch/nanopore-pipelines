@@ -21,12 +21,12 @@ REF = '/proj/ideel/resources/genomes/Tpallidum/Nichols_NC_021490.2.fasta'
 minimap2 = '/nas/longleaf/home/kamoser/bin/minimap2-2.17_x64-linux/minimap2'
 
 ## Project specfic paths
-workdir: '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/minimap'
+workdir: '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/minimap' # where do you want your bam files to go? (*hint* probably scratch)
 WRKDIR = '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/minimap' #setting string var
 
 readWD = '/pine/scr/k/a/kamoser/nanopore-tpallidium/test-alignments/symlinks/' # where are your reads kept?
 
-SAMPLES, = glob_wildcards(readWD + '{samp}.fastq') #getting samples
+SAMPLES, = glob_wildcards(readWD + '{samp}.fastq') #getting list of samples
 
 ################################################################################
 

@@ -44,7 +44,7 @@ rule align:
 	output:
 		'{samp}.bam'
 	shell:
-		'minimap2 -t 4 -ax -N0 map-ont {REF} {input} \
+		'minimap2 -t 4 -ax -N 0 map-ont {REF} {input} \
 			| samtools view -Shb - \
 			> {output}'
 

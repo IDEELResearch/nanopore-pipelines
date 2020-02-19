@@ -1,4 +1,4 @@
-# Alignment scripts
+# alignment scripts
 
 - This directory contains snakemake templates to run on the cluster
   - Also contains an example script of submitting the snakemake.py file to the cluster using SLURM

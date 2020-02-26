@@ -1,9 +1,7 @@
-## assembly scripts
+### Scripts for assembly generation and qc
 
-- Scripts for:
-  - <i>De novo</i> assembly using whole-genome sequencing data
-  - <i>De novo</i> assembly using hybrid-capture sequencing data
-  
+This directory contains submission scripts for previously developed assembler programs to the longleaf environment, as well as some helpful scripts to quickly gather assembly statistics
+
 ## Some suggestions
 
 ### Assembly options for large eukaryotic genomes

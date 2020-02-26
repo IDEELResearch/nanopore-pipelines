@@ -6,14 +6,16 @@
   
 ## Some suggestions
 
-### Assembly options for large eukaryotic
+### Assembly options for large eukaryotic genomes
 - Canu 
 
 ### Assembly options for small eukaryotic genomes
 - Canu
-  - For high AT rich genomes: correctedErrorRate=0.15
+  - Can handle nanopore and pacbio data (or both together for hybrid assemblies)
+  - For high AT rich genomes: 
+     `correctedErrorRate=0.15`
   - May time out due to default SLURM settings, so it's helpful to add:
-    - `-gridOptions="--time=10-12:00:00"`
+     `-gridOptions="--time=10-12:00:00"`
 - Flye
 
 ### Assembly options for small viral genomes

@@ -9,12 +9,15 @@ This directory contains submission scripts for previously developed assembler pr
 
 ### Assembly options for small eukaryotic genomes
 - Canu
+  - Is available under longleaf's module system
   - Can handle nanopore and pacbio data (or both together for hybrid assemblies)
   - For high AT rich genomes: 
      `correctedErrorRate=0.15`
   - May time out due to default SLURM settings, so it's helpful to add:
      `-gridOptions="--time=10-12:00:00"`
 - Flye
+  - Needs to be installed locally:
+    `conda install flye`
 
 ### Assembly options for small viral genomes
 <TO-COMPLETE>

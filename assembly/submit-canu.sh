@@ -17,7 +17,18 @@ module load canu/1.7
 #This seems a bit redundant, but I haven't been able to get it to run any other way with SLURM
 #For SGE environments, all you have to do is submit the actual command on the command line. 
 
+#usage: canu [-correct | -trim | -assemble] \
+#            [-s <assembly-specifications-file>] \
+#             -p <assembly-prefix> \
+#             -d <assembly-directory> \
+#             genomeSize=<number>[g|m|k] \
+#             errorRate=0.X \
+#            [other-options] \
+#            [-pacbio-raw | -pacbio-corrected | -nanopore-raw | -nanopore-corrected] *fastq
+
 ###################################################################################################
+
+#typical canu command to run all steps (correction, trimming, and assembling): 
 
 data_d=/pine/scr/<O>/<N>/<ONYEN/ #a single fastq file (preferably zipped) containing reads
 work_d=/pine/scr/k/a/kamoser/ovale_assembly/canu_v1 #where canu will right your output

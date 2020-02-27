@@ -5,7 +5,7 @@ Scripts and pipelines for analyzing Oxford Nanopore long-read data
 
 ## Required and Recommended software
 
-- Bioconda (needed for installation of some of the below software without sudo permissions; installation instructions [here](https://bioconda.github.io/user/install.html)
+- Bioconda (needed for installation of some of the below software without root permissions; installation instructions [here])(https://bioconda.github.io/user/install.html)
 
 ### QC
 - Porechops (depricated in favor of qcat, but qcat will not trim adapters if you don't have barcodes)

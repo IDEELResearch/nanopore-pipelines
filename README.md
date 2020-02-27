@@ -3,6 +3,15 @@ Scripts and pipelines for analyzing Oxford Nanopore long-read data
 
 **Use at your own risk**
 
+## Required and Recommended software
+
+- Bioconda (installation instructions here)
+
+- Porechops
+- qcat
+- minimap2
+- ngmlr
+
 ## Instructions for removing data from MinIT
 
 - Connect to minit hostpot using instructions in stupid card

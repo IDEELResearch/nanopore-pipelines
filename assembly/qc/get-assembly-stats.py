@@ -14,7 +14,9 @@ import Bio
 from Bio import SeqIO
 import numpy
 
-sequences = list(SeqIO.parse("final_assembly.fasta","fasta"))
+fasta_file=sys.argv[1] #input fasta file
+
+sequences = list(SeqIO.parse(open(fasta_file),"fasta"))
 sequences.sort(key=lambda r: len(r))
 
 count=0
